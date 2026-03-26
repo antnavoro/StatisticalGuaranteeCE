@@ -105,8 +105,19 @@ def load_data(dataset):
         
         omega0 = np.ones(len(Y)) / len(Y) # No duplicates in this dataset
 
+    elif dataset == 'qsar_oral_toxicity':
+        file_data = "qsar_oral_toxicity.csv" # Path to local dataset
+
+        # Usamos sep=';' para que divida las columnas correctamente
+        df = pd.read_csv(file_data, header=None, names = [str(i) for i in range(1025)], na_values="?", sep=';', low_memory=False)        # Print the last columns of the first few rows to understand its structure
+        df["1024"] = df["1024"].replace({'negative': 1, 'positive': 0}) # 1 = benign, 0 = malignant
+        df, omega0 = elliminate_duplicates(df) # Eliminate duplicates and calculate omega0
+
+        X = df.iloc[:, :-1]
+        Y = df.iloc[:, -1].values # 0 = toxic, 1 = non-toxic
+
     else:
-        print('Invalid dataset')
+        print('Invalid dataset:', dataset)
         sys.exit()
 
     X_original = X.copy()
@@ -119,3 +130,20 @@ def load_data(dataset):
 
     return X, Y, X_original, omega0
 
+
+# X, Y, X_original, omega0 = load_data('qsar_oral_toxicity')
+# a,b,c =0,0,0
+# for i, col in enumerate(X_original.columns):
+#     unique_values = np.unique(X_original[col])
+#     if np.all(np.isin(unique_values, [0, 1])):  # If it is binary
+#         a += 1
+#         print(f"Column '{col}' is binary")# with unique values: {unique_values}")
+#     elif np.issubdtype(X_original[col].dtype, np.integer):  # If it is integer
+#         b += 1
+#         print(f"Column '{col}' is integer")# with unique values: {unique_values}")
+#     else:
+#         c += 1
+#         print(f"Column '{col}' is continuous")# with unique values: {unique_values}")
+# print(f"Number of binary features: {a-1}")
+# print(f"Number of integer features: {b}")
+# print(f"Number of continuous features: {c}")
