@@ -1,5 +1,5 @@
 # StatisticalGuaranteeCE
-Code to generate counterfactual explanations based on the paper "Building Robust Counterfactual Explanations with Statistical Guarantees" by Emilio Carrizosa, Antonio Navas-Orozco. The preprint can be found here: https://www.researchgate.net/publication/396529217_Building_Robust_Counterfactual_Explanations_with_Statistical_Guarantees
+Code to generate counterfactual explanations based on the paper "Building Robust Counterfactual Explanations with Statistical Guarantees" by Emilio Carrizosa, Antonio Navas-Orozco. The paper can be found here: https://www.sciencedirect.com/science/article/pii/S2192440626000092
 
 For the results of the experiments contained in this repository, Python 3.12.8 and Gurobi 12.0.1 were used. These experiments were conducted on a MacBook Pro equipped with an Apple M4 Pro chip (12 cores: 8 performance and 4 efficiency), 48 GB of RAM, and running macOS Sequoia 15.1 (64-bit).
 
